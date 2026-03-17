@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+
+ import './App.css'
 import Todo from './components/Todo.jsx'
 import Title from './components/Title.jsx';
 import Modal from './components/Modal.jsx';
@@ -11,11 +10,17 @@ import Counter from "./components/Counter.jsx"
 
 function App() {
 
-  return <Counter />
+ 
  const [showModal, setShowModal] = useState(false)
+
+ function onTodoDelete() {
+  setShowModal(true)
+  console.log('onTodoDelete()')
+ }
 
   return (
       <div>
+      <Counter />
       <Title />
       <div>
         <input type="text" onChange={(event) => {
@@ -24,14 +29,22 @@ function App() {
         <button onClick={() => setShowModal(true)}>Add todo</button>
       </div>
       <div className="todo__wrapper">
-     <Todo title="Finish Frontend Simplified"/>
-     <Todo title="Finish Interview Section"/>
-     <Todo title="Land a $100k job"/>
+     <Todo onTodoDelete={onTodoDelete} title="Finish Frontend Simplified"/>
+     <Todo onTodoDelete={onTodoDelete} title="Finish Interview Section"/>
+     <Todo onTodoDelete={onTodoDelete} title="Land a $100k job"/>
       </div>
    {showModal && <Modal title="Confirm Delete?"/>}
      </div>
-    </>
+    
   )
 }
 
 export default App
+
+
+
+
+
+
+
+
