@@ -1,39 +1,33 @@
 
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-
 function Home() {
-   const [users, setUsers] = useState([])
-    async function main() {
-         const { data} = await axios.get("https://jsonplaceholder.typicode.com/users")
-      setUsers(data)
-      console.log(data)
-       }
-   
-   
-    useEffect(() => {
-      setTimeout(() => {
-        fetchUsers();
-      }, 500)
-       fetchUsers();
-    }, [])
+  const [users, setUsers] = useState([])
 
-    const pixels = "3px"
-    return ( 
-        <div>
-        {users.map(() => {
-   return <div style={{border: `${pixels} solid black`}}>
-   <div>{users[0]?.id}</div>
-   <div>{users[0]?.name}</div>
-   <div>{users[0]?.email}</div>
-   <div>{users[0]?.username}</div>
+  async function fetchUsers() {
+    const { data } = await axios.get("https://jsonplaceholder.typicode.com/users")
+    setUsers(data)
+  }
+
+  useEffect(() => {
+    fetchUsers()
+  }, [])
+
+  return (
+    <div>
+      {users.map((user) => {
+        return (
+          <div style={{ border: "3px solid black" }} key={user.id}>
+            <div>{user.id}</div>
+            <div>{user.name}</div>
+            <div>{user.email}</div>
+            <div>{user.username}</div>
+          </div>
+        )
+      })}
     </div>
-
-
-        })}
-        </div>
-      
-)
+  )
 }
+
 export default Home
