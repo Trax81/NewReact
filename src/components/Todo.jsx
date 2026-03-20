@@ -2,7 +2,7 @@
 import './Todo.css'
 
 
-function Todo({title }) {
+function Todo({title, onTodoDelete }) {
 
     return (
         <div className="todo">
