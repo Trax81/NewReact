@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import User from "../components/User.jsx"
 
 function Home() {
   const [users, setUsers] = useState([])
@@ -11,23 +12,30 @@ function Home() {
   }
 
   useEffect(() => {
+    setTimeout(() => {
     fetchUsers()
-  }, [])
+    }, 2000);
+  }, []);
+
+  function renderUsers() {
+    
+  }
 
   return (
     <div>
-      {users.map((user) => {
-        return (
-          <div style={{ border: "3px solid black" }} key={user.id}>
-            <div>{user.id}</div>
-            <div>{user.name}</div>
-            <div>{user.email}</div>
-            <div>{user.username}</div>
-          </div>
-        )
-      })}
+      {users.map((user) => (
+        <Link to={`/users/${user.id}`} key={user.id}>
+        <User 
+        key={user.id}
+        id={user.id} 
+        name={user.name} 
+        email={user.email} 
+        username={user.username}
+        />
+        </Link>
+     )) : <h1>Loading...</h1>}
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

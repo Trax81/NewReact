@@ -6,6 +6,7 @@ import Home from './components/pages/Home.jsx'
 import About from './components/pages/About.jsx'
 import Contact from './components/pages/Contact.jsx'
 import Nav from './components/Nav.jsx'
+import Users from './components/pages/Users.jsx'
 
 
 function App() {
@@ -16,11 +17,10 @@ function App() {
       <div>
 
         <Router>
-      <Nav />
+      
           <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/users/:username" element={<Users />}></Route>
-            <Route path="/contact" element={<Contact />}></Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/users/:id" element={<Users />} />
           </Routes>
 
         </Router>
